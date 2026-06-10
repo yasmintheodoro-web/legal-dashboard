@@ -2,52 +2,56 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Dashboard Legal | Documentos</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Google Sans',Arial,sans-serif;background:#fafafa;color:#222;padding:20px 24px}
-.header{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2.5px solid #BE0380;padding-bottom:10px;margin-bottom:16px}
-.header h1{font-size:14px;font-weight:500;color:#BE0380}
-.header span{font-size:11px;color:#6B4D63}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.hdr{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2.5px solid #BE0380;padding-bottom:10px;margin-bottom:14px}
+.hdr h1{font-size:14px;font-weight:500;color:#BE0380}
+.hdr span{font-size:11px;color:#6B4D63}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .tab{font-size:12px;padding:6px 14px;border-radius:8px;border:1.5px solid #EAC8DE;cursor:pointer;background:transparent;color:#6B4D63;font-family:inherit;line-height:1.4;text-align:center}
 .tab.on{background:#BE0380;color:#fff;border-color:#BE0380}
 .tr{font-size:12px;font-weight:500;display:block}
 .ts{font-size:10px;opacity:.75;display:block;margin-top:1px}
-.tab.on .ts{opacity:.9}
 .sec{display:none}.sec.on{display:block}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
 .card{background:#F9E6F3;border-radius:8px;padding:12px 14px;border:0.5px solid #EAC8DE}
 .card-lbl{font-size:10px;color:#6B4D63;margin-bottom:3px}
 .card-val{font-size:24px;font-weight:500;color:#40002D}
-.panel{background:#fff;border:0.5px solid #EAC8DE;border-radius:10px;padding:14px 16px;margin-bottom:12px}
-.panel-lbl{font-size:10px;font-weight:500;color:#6B4D63;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.card-sub{font-size:10px;color:#6B4D63;margin-top:2px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.panel{background:#fff;border:0.5px solid #EAC8DE;border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.panel-lbl{font-size:10px;font-weight:500;color:#6B4D63;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.leg{display:flex;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.leg-i{display:flex;align-items:center;gap:4px;font-size:11px;color:#6B4D63}
+.leg-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed}
 th{text-align:left;font-size:10px;font-weight:500;color:#6B4D63;text-transform:uppercase;letter-spacing:.04em;padding:0 6px 8px 0;border-bottom:1.5px solid #EAC8DE}
-td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td{padding:6px 6px 6px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#222}
 .badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;white-space:nowrap}
-.b1{background:#40002D;color:#F9E6F3}
-.b2{background:#BE0380;color:#fff}
-.b3{background:#EAC8DE;color:#40002D}
-.b4{background:#6B4D63;color:#F9E6F3}
+.b1{background:#40002D;color:#F9E6F3}.b2{background:#BE0380;color:#fff}
+.b3{background:#EAC8DE;color:#40002D}.b4{background:#6B4D63;color:#F9E6F3}
 .b5{background:#F9E6F3;color:#BE0380;border:1px solid #EAC8DE}
 .tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500}
-.tag-cs{background:#EAC8DE;color:#40002D}
-.tag-sales{background:#F9E6F3;color:#BE0380;border:1px solid #EAC8DE}
-.sla-ok{color:#BE0380;font-size:11px}
-.sla-late{color:#40002D;font-size:11px;font-weight:600}
+.tcs{background:#EAC8DE;color:#40002D}.tsl{background:#F9E6F3;color:#BE0380;border:1px solid #EAC8DE}
+.tat{background:#40002D;color:#F9E6F3}.tsmb{background:#BE0380;color:#fff}
+.sla-ok{color:#BE0380;font-size:11px}.sla-late{color:#40002D;font-size:11px;font-weight:600}
 .month-grid{display:flex;flex-wrap:wrap;gap:8px}
-.mcard{background:#F9E6F3;border:0.5px solid #EAC8DE;border-radius:8px;padding:10px 14px;min-width:72px;text-align:center}
+.mcard{background:#F9E6F3;border:0.5px solid #EAC8DE;border-radius:8px;padding:10px 14px;min-width:68px;text-align:center}
 .mcard-lbl{font-size:10px;color:#6B4D63;margin-bottom:2px}
 .mcard-val{font-size:20px;font-weight:500;color:#40002D}
+.critico{border-left:3px solid #D85A30;padding:8px 10px;margin-bottom:8px;background:#FAECE7;border-radius:0 6px 6px 0}
+.critico-emp{font-size:12px;font-weight:500;color:#40002D}
+.critico-det{font-size:10px;color:#6B4D63;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.critico-dias{font-size:11px;font-weight:500;color:#993C1D}
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>Legal - Revenue | Tickets: Contratos SMB & Aditivos P1 e P2</h1>
+<div class="hdr">
+  <h1>Legal - Revenue | Tickets: Contratos SMB &amp; Aditivos P1 e P2</h1>
   <span>Atualizado 10/06/2026 às 16h30</span>
 </div>
 <div class="tabs">
@@ -60,47 +64,78 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
 <button class="tab" onclick="sw('w5',this)"><span class="tr">04–08/mai</span><span class="ts">mai 1/26</span></button>
 <button class="tab" onclick="sw('w6',this)"><span class="tr">27/abr–01/mai</span><span class="ts">abr 4/26</span></button>
 <button class="tab" onclick="sw('w7',this)"><span class="tr">20–24/abr</span><span class="ts">abr 3/26</span></button>
+<button class="tab" onclick="sw('w8',this)"><span class="tr">13–17/abr</span><span class="ts">abr 2/26</span></button>
+<button class="tab" onclick="sw('w9',this)"><span class="tr">06–10/abr</span><span class="ts">abr 1/26</span></button>
 
 </div>
 <div id="wg" class="sec on">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total geral</div><div class="card-val">283</div></div>
-    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">252</div></div>
-    <div class="card"><div class="card-lbl">Semanas ativas</div><div class="card-val">60</div></div>
-    <div class="card"><div class="card-lbl">Meses</div><div class="card-val">15</div></div>
+    <div class="card"><div class="card-lbl">Total geral</div><div class="card-val">283</div><div class="card-sub">208 Aditivos · 75 SMB</div></div>
+    <div class="card"><div class="card-lbl">Aditivos</div><div class="card-val">208</div><div class="card-sub">73% do volume</div></div>
+    <div class="card"><div class="card-lbl">SMB</div><div class="card-val">75</div><div class="card-sub">27% do volume</div></div>
+    <div class="card"><div class="card-lbl">Semanas ativas</div><div class="card-val">60</div><div class="card-sub">15 meses</div></div>
   </div>
   <div class="two">
     <div class="panel">
-      <div class="panel-lbl">Volume por semana (últimas 3)</div>
-      <div style="position:relative;height:160px"><canvas id="barWeek" role="img" aria-label="Volume por semana">Últimas 3 semanas</canvas></div>
+      <div class="panel-lbl">Volume semanal (últimas 3)</div>
+      <div class="leg"><span class="leg-i"><span class="leg-dot" style="background:#40002D"></span>Aditivo</span><span class="leg-i"><span class="leg-dot" style="background:#BE0380"></span>SMB</span></div>
+      <div style="position:relative;height:150px"><canvas id="cWeek" role="img" aria-label="Volume semanal últimas 3 semanas">Aditivos e SMB por semana</canvas></div>
     </div>
     <div class="panel">
-      <div class="panel-lbl">Volume mensal</div>
-      <div style="position:relative;height:160px"><canvas id="barMonth" role="img" aria-label="Volume por mês">Volume mensal</canvas></div>
+      <div class="panel-lbl">Volume mensal (últimos 4 meses)</div>
+      <div class="leg"><span class="leg-i"><span class="leg-dot" style="background:#40002D"></span>Aditivo</span><span class="leg-i"><span class="leg-dot" style="background:#BE0380"></span>SMB</span></div>
+      <div style="position:relative;height:150px"><canvas id="cMonth" role="img" aria-label="Volume mensal últimos 4 meses">Aditivos e SMB por mês</canvas></div>
+    </div>
+  </div>
+  <div class="two">
+    <div class="panel">
+      <div class="panel-lbl">Volume por quadrimestre</div>
+      <div class="leg"><span class="leg-i"><span class="leg-dot" style="background:#40002D"></span>Aditivo</span><span class="leg-i"><span class="leg-dot" style="background:#BE0380"></span>SMB</span></div>
+      <div style="position:relative;height:150px"><canvas id="cQ" role="img" aria-label="Volume por quadrimestre">Quadrimestres Aditivo e SMB</canvas></div>
+    </div>
+    <div class="panel" style="border-left:3px solid #D85A30;border-radius:0 10px 10px 0">
+      <div class="panel-lbl" style="color:#993C1D">Casos críticos</div>
+      <div class="critico">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div class="critico-emp">Elaborar rescisão contratual - Sili</div>
+        <div class="critico-dias">+14 dias úteis</div>
+      </div>
+      <div class="critico-det">Elaborar rescisão contratual - Silicone Center</div>
+      <div style="margin-top:4px"><span class="tag tat" style="font-size:9px">Aditivo</span> <span style="font-size:10px;color:#6B4D63">Aguardando info/confirmação CS</span></div>
+    </div>
+<div class="critico">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div class="critico-emp">Creditas</div>
+        <div class="critico-dias">+30 dias úteis</div>
+      </div>
+      <div class="critico-det">Aditivo de reajuste + renovação |  [CS] Renovação 2026 |  Cr…</div>
+      <div style="margin-top:4px"><span class="tag tat" style="font-size:9px">Aditivo</span> <span style="font-size:10px;color:#6B4D63">Aguardando info/confirmação CS</span></div>
+    </div>
+
     </div>
   </div>
   <div class="panel">
     <div class="panel-lbl">Resumo mensal</div>
-    <div class="month-grid"><div class="mcard"><div class="mcard-lbl">Abr/25</div><div class="mcard-val">8</div></div>
-<div class="mcard"><div class="mcard-lbl">Mai/25</div><div class="mcard-val">22</div></div>
-<div class="mcard"><div class="mcard-lbl">Jun/25</div><div class="mcard-val">24</div></div>
-<div class="mcard"><div class="mcard-lbl">Jul/25</div><div class="mcard-val">28</div></div>
-<div class="mcard"><div class="mcard-lbl">Ago/25</div><div class="mcard-val">22</div></div>
-<div class="mcard"><div class="mcard-lbl">Set/25</div><div class="mcard-val">24</div></div>
-<div class="mcard"><div class="mcard-lbl">Out/25</div><div class="mcard-val">17</div></div>
-<div class="mcard"><div class="mcard-lbl">Nov/25</div><div class="mcard-val">14</div></div>
-<div class="mcard"><div class="mcard-lbl">Dez/25</div><div class="mcard-val">19</div></div>
-<div class="mcard"><div class="mcard-lbl">Jan/26</div><div class="mcard-val">10</div></div>
-<div class="mcard"><div class="mcard-lbl">Fev/26</div><div class="mcard-val">21</div></div>
-<div class="mcard"><div class="mcard-lbl">Mar/26</div><div class="mcard-val">20</div></div>
-<div class="mcard"><div class="mcard-lbl">Abr/26</div><div class="mcard-val">19</div></div>
+    <div class="month-grid"><div class="mcard"><div class="mcard-lbl">Jun/26</div><div class="mcard-val">12</div></div>
 <div class="mcard"><div class="mcard-lbl">Mai/26</div><div class="mcard-val">23</div></div>
-<div class="mcard"><div class="mcard-lbl">Jun/26</div><div class="mcard-val">12</div></div>
+<div class="mcard"><div class="mcard-lbl">Abr/26</div><div class="mcard-val">19</div></div>
+<div class="mcard"><div class="mcard-lbl">Mar/26</div><div class="mcard-val">20</div></div>
+<div class="mcard"><div class="mcard-lbl">Fev/26</div><div class="mcard-val">21</div></div>
+<div class="mcard"><div class="mcard-lbl">Jan/26</div><div class="mcard-val">10</div></div>
+<div class="mcard"><div class="mcard-lbl">Dez/25</div><div class="mcard-val">19</div></div>
+<div class="mcard"><div class="mcard-lbl">Nov/25</div><div class="mcard-val">14</div></div>
+<div class="mcard"><div class="mcard-lbl">Out/25</div><div class="mcard-val">17</div></div>
+<div class="mcard"><div class="mcard-lbl">Set/25</div><div class="mcard-val">24</div></div>
+<div class="mcard"><div class="mcard-lbl">Ago/25</div><div class="mcard-val">22</div></div>
+<div class="mcard"><div class="mcard-lbl">Jul/25</div><div class="mcard-val">28</div></div>
+<div class="mcard"><div class="mcard-lbl">Jun/25</div><div class="mcard-val">24</div></div>
+<div class="mcard"><div class="mcard-lbl">Mai/25</div><div class="mcard-val">22</div></div>
+<div class="mcard"><div class="mcard-lbl">Abr/25</div><div class="mcard-val">8</div></div>
 </div>
   </div>
 </div><div id="w0" class="sec">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div></div>
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div><div class="card-sub">4 Aditivos · 1 SMB</div></div>
     <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">0</div></div>
     <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">2</div></div>
     <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">3</div></div>
@@ -108,40 +143,56 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   <div class="panel">
     <table>
       <thead><tr>
-        <th style="width:42%">Documento</th>
-        <th style="width:9%">Criado</th>
-        <th style="width:10%">Sol.</th>
-        <th style="width:25%">Status</th>
-        <th style="width:14%">SLA</th>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
       </tr></thead>
       <tbody><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | MARQUETERIE">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="MARQUETERIE">MARQUETERIE</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>08/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b3">⏳ Ag. validação CS</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | MENTORIA EMPRESARIAL">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="MENTORIA EMPRESARIAL">MENTORIA EMPRESARIAL</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>09/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Andrea Perrone Comunicação">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Andrea Perrone Comunicação">Andrea Perrone Comunicaçã…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>09/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | mywork">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="mywork">mywork</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>09/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b5">◎ Em análise</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Pipo Saúde - [Sales] Elaboração de contrato</td>
+        </tr>
+<tr>
+          <td title="Pipo Saúde - [Sales] Elaboração de contrato">Pipo Saúde - [Sales] Elaboração de contrato</td>
+          <td title="Pipo Saúde">Pipo Saúde</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tsl">Sales</span></td>
           <td>09/06</td>
-          <td><span class="tag tag-sales">Sales</span></td>
           <td><span class="badge b5">◎ Em análise</span></td>
           <td class="sla-ok">No prazo</td>
         </tr></tbody>
@@ -149,7 +200,7 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   </div>
 </div><div id="w1" class="sec">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total</div><div class="card-val">7</div></div>
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">7</div><div class="card-sub">7 Aditivos · 0 SMB</div></div>
     <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">0</div></div>
     <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">5</div></div>
     <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">2</div></div>
@@ -157,52 +208,74 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   <div class="panel">
     <table>
       <thead><tr>
-        <th style="width:42%">Documento</th>
-        <th style="width:9%">Criado</th>
-        <th style="width:10%">Sol.</th>
-        <th style="width:25%">Status</th>
-        <th style="width:14%">SLA</th>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
       </tr></thead>
       <tbody><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | INNOVENT">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="INNOVENT">INNOVENT</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>01/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | PROJETO ALFA – ALIANÇA DE LABORATÓRIOS DE FERTILIZAÇÃO ASSISTIDA S.A">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="PROJETO ALFA – ALIANÇA DE LABORATÓRIOS DE FERTILIZAÇÃO ASSISTIDA S.A">PROJETO ALFA – ALIANÇA DE…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>01/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | YSSY SOLUCOES S.A.">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="YSSY SOLUCOES S.A.">YSSY SOLUCOES S.A.</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>03/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 |  Grupo Moas">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Grupo Moas">Grupo Moas</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>03/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b3">⏳ Ag. validação CS</span></td>
-          <td class="sla-late">+2 dias útil</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td class="sla-late">+2 dias</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | ROYAL ASSISTENCIA TECNICA LTDA">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="ROYAL ASSISTENCIA TECNICA LTDA">ROYAL ASSISTENCIA TECNICA…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>03/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b5">◎ Em análise</span></td>
-          <td class="sla-late">+2 dias útil</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td class="sla-late">+2 dias</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Estaff Solucoes Tecnologicas de Agenciamento Ltda">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Estaff Solucoes Tecnologicas de Agenciamento Ltda">Estaff Solucoes Tecnologi…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>05/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | TECHNOBLAST SERVICOS DE DETONACAO E SISMOGRAFIA LTDA">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="TECHNOBLAST SERVICOS DE DETONACAO E SISMOGRAFIA LTDA">TECHNOBLAST SERVICOS DE D…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>05/06</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
         </tr></tbody>
@@ -210,7 +283,7 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   </div>
 </div><div id="w2" class="sec">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total</div><div class="card-val">6</div></div>
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">6</div><div class="card-sub">5 Aditivos · 1 SMB</div></div>
     <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">1</div></div>
     <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">5</div></div>
     <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
@@ -218,46 +291,65 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   <div class="panel">
     <table>
       <thead><tr>
-        <th style="width:42%">Documento</th>
-        <th style="width:9%">Criado</th>
-        <th style="width:10%">Sol.</th>
-        <th style="width:25%">Status</th>
-        <th style="width:14%">SLA</th>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
       </tr></thead>
       <tbody><tr>
-          <td style="font-size:11px">Aditivo - Reajuste Be Five</td>
+          <td title="Aditivo - Reajuste Be Five">Aditivo - Reajuste Be Five</td>
+          <td title="Aditivo - Reajuste Be Five">Aditivo - Reajuste Be Fiv…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>25/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Instituto Hoc de Hemoterapia Ltda - [Sales] Elaboração …</td>
+        </tr>
+<tr>
+          <td title="Instituto Hoc de Hemoterapia Ltda - [Sales] Elaboração de contrato">Instituto Hoc de Hemoterapia Ltda - [Sales] Elaboração …</td>
+          <td title="Instituto Hoc de Hemoterapia Ltda">Instituto Hoc de Hemotera…</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tsl">Sales</span></td>
           <td>26/05</td>
-          <td><span class="tag tag-sales">Sales</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | TECHNOBLAST SERVICOS DE DETONACAO E SISMOGRAFIA LTDA">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="TECHNOBLAST SERVICOS DE DETONACAO E SISMOGRAFIA LTDA">TECHNOBLAST SERVICOS DE D…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>26/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Aliria">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Aliria">Aliria</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>27/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Experience Club">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Experience Club">Experience Club</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>27/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Estaff Solucoes Tecnologicas de Agenciamento Ltda">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Estaff Solucoes Tecnologicas de Agenciamento Ltda">Estaff Solucoes Tecnologi…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>28/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
         </tr></tbody>
@@ -265,7 +357,7 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   </div>
 </div><div id="w3" class="sec">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total</div><div class="card-val">9</div></div>
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">9</div><div class="card-sub">7 Aditivos · 2 SMB</div></div>
     <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">2</div></div>
     <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">6</div></div>
     <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">1</div></div>
@@ -273,64 +365,92 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   <div class="panel">
     <table>
       <thead><tr>
-        <th style="width:42%">Documento</th>
-        <th style="width:9%">Criado</th>
-        <th style="width:10%">Sol.</th>
-        <th style="width:25%">Status</th>
-        <th style="width:14%">SLA</th>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
       </tr></thead>
       <tbody><tr>
-          <td style="font-size:11px">[CS] Aditivo de Renovação com CAC</td>
+          <td title="[CS] Aditivo de Renovação com CAC">[CS] Aditivo de Renovação com CAC</td>
+          <td title="Aditivo de Renovação com CAC">Aditivo de Renovação com …</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>18/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Web Estratégica">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Web Estratégica">Web Estratégica</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>18/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Elaborar rescisão contratual - Silicone Center</td>
+        </tr>
+<tr>
+          <td title="Elaborar rescisão contratual - Silicone Center">Elaborar rescisão contratual - Silicone Center</td>
+          <td title="Elaborar rescisão contratual - Silicone ">Elaborar rescisão contrat…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>18/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b3">⏳ Ag. validação CS</span></td>
-          <td class="sla-late">+14 dias útil</td>
-        </tr><tr>
-          <td style="font-size:11px">Elaboração Documentos | [CS] Graded</td>
+          <td class="sla-late">+14 dias</td>
+        </tr>
+<tr>
+          <td title="Elaboração Documentos | [CS] Graded">Elaboração Documentos | [CS] Graded</td>
+          <td title="Graded">Graded</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>19/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | STAAGE LTDA">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="STAAGE LTDA">STAAGE LTDA</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>20/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">WSI SISTEMAS ELETRONICOS E COMERCIO - [Sales] Elaboraçã…</td>
+        </tr>
+<tr>
+          <td title="WSI SISTEMAS ELETRONICOS E COMERCIO - [Sales] Elaboração de contrato">WSI SISTEMAS ELETRONICOS E COMERCIO - [Sales] Elaboraçã…</td>
+          <td title="WSI SISTEMAS ELETRONICOS E COMERCIO">WSI SISTEMAS ELETRONICOS …</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tsl">Sales</span></td>
           <td>20/05</td>
-          <td><span class="tag tag-sales">Sales</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | RNA Assistência Médica">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="RNA Assistência Médica">RNA Assistência Médica</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>21/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | VIVER EDITORA LTDA">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="VIVER EDITORA LTDA">VIVER EDITORA LTDA</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>21/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | EDITORA ORBITA LTDA">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="EDITORA ORBITA LTDA">EDITORA ORBITA LTDA</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>21/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
         </tr></tbody>
@@ -338,7 +458,7 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   </div>
 </div><div id="w4" class="sec">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div></div>
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div><div class="card-sub">4 Aditivos · 1 SMB</div></div>
     <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">4</div></div>
     <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">1</div></div>
     <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
@@ -346,40 +466,56 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   <div class="panel">
     <table>
       <thead><tr>
-        <th style="width:42%">Documento</th>
-        <th style="width:9%">Criado</th>
-        <th style="width:10%">Sol.</th>
-        <th style="width:25%">Status</th>
-        <th style="width:14%">SLA</th>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
       </tr></thead>
       <tbody><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 |  Almada Capital">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Almada Capital">Almada Capital</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>11/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Elaboração Documentos | Deal CS - PROGROUP TECNOLOGIA D…</td>
+        </tr>
+<tr>
+          <td title="Elaboração Documentos | Deal CS - PROGROUP TECNOLOGIA DA INFORMACAO LTDA">Elaboração Documentos | Deal CS - PROGROUP TECNOLOGIA D…</td>
+          <td title="Deal CS - PROGROUP TECNOLOGIA DA INFORMACAO LTDA">Deal CS - PROGROUP TECNOL…</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>15/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Wecare - Aditivo</td>
+        </tr>
+<tr>
+          <td title="Wecare - Aditivo">Wecare - Aditivo</td>
+          <td title="Wecare">Wecare</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>15/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo - Inclusão de planos</td>
+        </tr>
+<tr>
+          <td title="Aditivo - Inclusão de planos">Aditivo - Inclusão de planos</td>
+          <td title="Aditivo - Inclusão de planos">Aditivo - Inclusão de pla…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>15/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo - Affinity</td>
+        </tr>
+<tr>
+          <td title="Aditivo - Affinity">Aditivo - Affinity</td>
+          <td title="Aditivo - Affinity">Aditivo - Affinity</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>15/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
         </tr></tbody>
@@ -387,7 +523,7 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   </div>
 </div><div id="w5" class="sec">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total</div><div class="card-val">3</div></div>
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">3</div><div class="card-sub">3 Aditivos · 0 SMB</div></div>
     <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">2</div></div>
     <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">1</div></div>
     <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
@@ -395,28 +531,38 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   <div class="panel">
     <table>
       <thead><tr>
-        <th style="width:42%">Documento</th>
-        <th style="width:9%">Criado</th>
-        <th style="width:10%">Sol.</th>
-        <th style="width:25%">Status</th>
-        <th style="width:14%">SLA</th>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
       </tr></thead>
       <tbody><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Festalab">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Festalab">Festalab</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>08/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Sherlock Communications">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Sherlock Communications">Sherlock Communications</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>08/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | NoahTech">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="NoahTech">NoahTech</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>08/05</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
         </tr></tbody>
@@ -424,7 +570,7 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   </div>
 </div><div id="w6" class="sec">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total</div><div class="card-val">3</div></div>
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">3</div><div class="card-sub">1 Aditivos · 2 SMB</div></div>
     <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">2</div></div>
     <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">1</div></div>
     <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
@@ -432,28 +578,38 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   <div class="panel">
     <table>
       <thead><tr>
-        <th style="width:42%">Documento</th>
-        <th style="width:9%">Criado</th>
-        <th style="width:10%">Sol.</th>
-        <th style="width:25%">Status</th>
-        <th style="width:14%">SLA</th>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
       </tr></thead>
       <tbody><tr>
-          <td style="font-size:11px">{ABM} Dennis Group - [Sales] Aditivo de Inclusão/Exclus…</td>
+          <td title="{ABM} Dennis Group - [Sales] Aditivo de Inclusão/Exclusão de PJ">{ABM} Dennis Group - [Sales] Aditivo de Inclusão/Exclus…</td>
+          <td title="{ABM} Dennis Group">{ABM} Dennis Group</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tsl">Sales</span></td>
           <td>28/04</td>
-          <td><span class="tag tag-sales">Sales</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Nestig">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Nestig">Nestig</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>28/04</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">METRICAZ TECNOLOGIA E MARKETING - [Sales] Elaboração de…</td>
+        </tr>
+<tr>
+          <td title="METRICAZ TECNOLOGIA E MARKETING - [Sales] Elaboração de contrato">METRICAZ TECNOLOGIA E MARKETING - [Sales] Elaboração de…</td>
+          <td title="METRICAZ TECNOLOGIA E MARKETING">METRICAZ TECNOLOGIA E MAR…</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tsl">Sales</span></td>
           <td>30/04</td>
-          <td><span class="tag tag-sales">Sales</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
         </tr></tbody>
@@ -461,7 +617,7 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   </div>
 </div><div id="w7" class="sec">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div></div>
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div><div class="card-sub">4 Aditivos · 1 SMB</div></div>
     <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">3</div></div>
     <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">1</div></div>
     <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">1</div></div>
@@ -469,47 +625,201 @@ td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
   <div class="panel">
     <table>
       <thead><tr>
-        <th style="width:42%">Documento</th>
-        <th style="width:9%">Criado</th>
-        <th style="width:10%">Sol.</th>
-        <th style="width:25%">Status</th>
-        <th style="width:14%">SLA</th>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
       </tr></thead>
       <tbody><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Contabilidade Facilitada Educacional Ltda">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Contabilidade Facilitada Educacional Ltda">Contabilidade Facilitada …</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>22/04</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Novo contrato - Credikasa Bjax</td>
+        </tr>
+<tr>
+          <td title="Novo contrato - Credikasa Bjax">Novo contrato - Credikasa Bjax</td>
+          <td title="Novo contrato - Credikasa Bjax">Novo contrato - Credikasa…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>22/04</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">[CS] A2 Capital - [Sales] Aditivo de Inclusão de Planos</td>
+        </tr>
+<tr>
+          <td title="[CS] A2 Capital - [Sales] Aditivo de Inclusão de Planos">[CS] A2 Capital - [Sales] Aditivo de Inclusão de Planos</td>
+          <td title="A2 Capital">A2 Capital</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tsl">Sales</span></td>
           <td>23/04</td>
-          <td><span class="tag tag-sales">Sales</span></td>
           <td><span class="badge b1">✓ Concluído</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Galeria Nara Roesler">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Galeria Nara Roesler">Galeria Nara Roesler</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>24/04</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b2">↗ Em assinatura</span></td>
           <td class="sla-ok">No prazo</td>
-        </tr><tr>
-          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 |  Creditas">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Creditas">Creditas</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
           <td>24/04</td>
-          <td><span class="tag tag-cs">CS</span></td>
           <td><span class="badge b3">⏳ Ag. validação CS</span></td>
-          <td class="sla-late">+30 dias útil</td>
+          <td class="sla-late">+30 dias</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div><div id="w8" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">7</div><div class="card-sub">6 Aditivos · 1 SMB</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">7</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">0</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td title="Rescisão Contratual |  [CS] Renovação 2026 | NOH">Rescisão Contratual |  [CS] Renovação 2026 | NOH</td>
+          <td title="NOH">NOH</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
+          <td>14/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr>
+<tr>
+          <td title="Rescisão Contratual |  Deal CS - MIO NEUROFISIOLOGIA CLINICA LTDA">Rescisão Contratual |  Deal CS - MIO NEUROFISIOLOGIA CL…</td>
+          <td title="Deal CS - MIO NEUROFISIOLOGIA CLINICA LTDA">Deal CS - MIO NEUROFISIOL…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
+          <td>15/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Agencia E Plus">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Agencia E Plus">Agencia E Plus</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
+          <td>15/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | SOLITON CONTROLES INDUSTRIAIS LTDA">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="SOLITON CONTROLES INDUSTRIAIS LTDA">SOLITON CONTROLES INDUSTR…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
+          <td>16/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | TOUR HOUSE VIAGENS E TURISMO S.A">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="TOUR HOUSE VIAGENS E TURISMO S.A">TOUR HOUSE VIAGENS E TURI…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
+          <td>16/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Cultura na Prática">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Cultura na Prática">Cultura na Prática</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
+          <td>16/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr>
+<tr>
+          <td title="Deal CS - {Jumbo} Bueno Netto Benx {UH Gui} - [Sales] Aditivo de Inclusão de Planos">Deal CS - {Jumbo} Bueno Netto Benx {UH Gui} - [Sales] A…</td>
+          <td title="{Jumbo} Bueno Netto Benx {UH Gui}">{Jumbo} Bueno Netto Benx …</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tsl">Sales</span></td>
+          <td>17/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div><div id="w9" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">4</div><div class="card-sub">2 Aditivos · 2 SMB</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">4</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">0</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:30%">Documento</th>
+        <th style="width:18%">Empresa</th>
+        <th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th>
+        <th style="width:8%">Criado</th>
+        <th style="width:18%">Status</th>
+        <th style="width:10%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 |  CREDIKASA CONQUIST DOCUMENTACAO HABITACIONAL LTDA">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="CREDIKASA CONQUIST DOCUMENTACAO HABITACIONAL LTDA">CREDIKASA CONQUIST DOCUME…</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
+          <td>08/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr>
+<tr>
+          <td title="Corretora Affinity - [Sales] Elaboração de contrato">Corretora Affinity - [Sales] Elaboração de contrato</td>
+          <td title="Corretora Affinity">Corretora Affinity</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tsl">Sales</span></td>
+          <td>08/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr>
+<tr>
+          <td title="WECARE CORRETORA DE SEGUROS E BENEFICIOS LTDA - [Sales] Elaboração de contrato">WECARE CORRETORA DE SEGUROS E BENEFICIOS LTDA - [Sales]…</td>
+          <td title="WECARE CORRETORA DE SEGUROS E BENEFICIOS">WECARE CORRETORA DE SEGUR…</td>
+          <td><span class="tag tsmb">SMB</span></td>
+          <td><span class="tag tsl">Sales</span></td>
+          <td>10/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr>
+<tr>
+          <td title="Aditivo de reajuste + renovação |  [CS] Renovação 2026 | Lastro">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td title="Lastro">Lastro</td>
+          <td><span class="tag tat">Aditivo</span></td>
+          <td><span class="tag tcs">CS</span></td>
+          <td>10/04</td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
         </tr></tbody>
     </table>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 function sw(id,btn){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
@@ -517,16 +827,17 @@ function sw(id,btn){
   document.getElementById(id).classList.add('on');
   btn.classList.add('on');
 }
-new Chart(document.getElementById('barWeek'),{
-  type:'bar',
-  data:{labels:["mai 4/26", "jun 1/26", "jun 2/26"],datasets:[{data:[6, 7, 5],backgroundColor:["#EAC8DE", "#EAC8DE", "#BE0380"],borderRadius:4}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw+' tickets'}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{beginAtZero:true,ticks:{stepSize:2,font:{size:11}},grid:{color:'rgba(0,0,0,0.05)'}}}}
+const chartOpts = (stacked) => ({
+  responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},
+  scales:{
+    x:{stacked:true,grid:{display:false},ticks:{font:{size:11}}},
+    y:{stacked:stacked,beginAtZero:true,ticks:{font:{size:11}},grid:{color:'rgba(0,0,0,0.05)'}}
+  }
 });
-new Chart(document.getElementById('barMonth'),{
-  type:'bar',
-  data:{labels:["Abr/25", "Mai/25", "Jun/25", "Jul/25", "Ago/25", "Set/25", "Out/25", "Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],datasets:[{data:[8, 22, 24, 28, 22, 24, 17, 14, 19, 10, 21, 20, 19, 23, 12],backgroundColor:["#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#BE0380"],borderRadius:4}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw+' tickets'}}},scales:{x:{grid:{display:false},ticks:{font:{size:10},maxRotation:45,autoSkip:false}},y:{beginAtZero:true,ticks:{stepSize:5,font:{size:11}},grid:{color:'rgba(0,0,0,0.05)'}}}}
-});
+new Chart(document.getElementById('cWeek'),{type:'bar',data:{labels:["mai 4/26", "jun 1/26", "jun 2/26"],datasets:[{label:'Aditivo',data:[5, 7, 4],backgroundColor:'#40002D',borderRadius:3},{label:'SMB',data:[1, 0, 1],backgroundColor:'#BE0380',borderRadius:3}]},options:chartOpts(true)});
+new Chart(document.getElementById('cMonth'),{type:'bar',data:{labels:["Mar/26", "Abr/26", "Mai/26", "Jun/26"],datasets:[{label:'Aditivo',data:[15, 13, 19, 11],backgroundColor:'#40002D',borderRadius:3},{label:'SMB',data:[5, 6, 4, 1],backgroundColor:'#BE0380',borderRadius:3}]},options:chartOpts(true)});
+new Chart(document.getElementById('cQ'),{type:'bar',data:{labels:["1QD/25", "2QD/25", "3QD/25", "1QD/26", "2QD/26"],datasets:[{label:'Aditivo',data:[4, 63, 56, 55, 30],backgroundColor:'#40002D',borderRadius:3},{label:'SMB',data:[4, 33, 18, 15, 5],backgroundColor:'#BE0380',borderRadius:3}]},options:chartOpts(true)});
 </script>
 </body>
 </html>

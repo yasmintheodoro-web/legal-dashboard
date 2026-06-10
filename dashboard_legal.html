@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Legal | Documentos</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Google Sans', Arial, sans-serif; background: #fafafa; color: #222; padding: 24px; }
+.header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; border-bottom: 2.5px solid #BE0380; padding-bottom: 12px; }
+.header h1 { font-size: 16px; font-weight: 500; color: #BE0380; }
+.header span { font-size: 11px; color: #6B4D63; }
+.week-tabs { display: flex; gap: 6px; margin-bottom: 20px; }
+.wtab { font-size: 12px; padding: 5px 16px; border-radius: 20px; border: 1.5px solid #EAC8DE; cursor: pointer; background: transparent; color: #6B4D63; font-family: inherit; }
+.wtab.active { background: #BE0380; color: #fff; border-color: #BE0380; }
+.section { display: none; }
+.section.active { display: block; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+.metric { background: #F9E6F3; border-radius: 8px; padding: 14px 16px; border: 0.5px solid #EAC8DE; }
+.metric-label { font-size: 11px; color: #6B4D63; margin-bottom: 4px; }
+.metric-value { font-size: 28px; font-weight: 500; color: #40002D; }
+.charts-row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; margin-bottom: 16px; }
+.chart-card { background: #fff; border: 0.5px solid #EAC8DE; border-radius: 10px; padding: 16px 18px; }
+.chart-label { font-size: 10px; font-weight: 500; color: #6B4D63; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .06em; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #6B4D63; }
+.leg-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { text-align: left; font-size: 10px; font-weight: 500; color: #6B4D63; text-transform: uppercase; letter-spacing: .05em; padding: 0 8px 10px 0; border-bottom: 1.5px solid #EAC8DE; }
+td { padding: 8px 8px 8px 0; border-bottom: 0.5px solid #F3D8EC; vertical-align: middle; }
+.badge { display: inline-block; font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+.b-concluido { background: #40002D; color: #F9E6F3; }
+.b-assinatura { background: #BE0380; color: #fff; }
+.b-cs { background: #EAC8DE; color: #40002D; }
+.b-analise { background: #F9E6F3; color: #BE0380; border: 1px solid #EAC8DE; }
+.b-externo { background: #6B4D63; color: #F9E6F3; }
+.sla-ok { color: #BE0380; font-size: 11px; }
+.sla-late { color: #40002D; font-size: 11px; font-weight: 600; }
+.summary-card { background: #fff; border: 0.5px solid #EAC8DE; border-radius: 10px; padding: 16px 18px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Legal - Revenue | Tickets: Contratos SMB & Aditivos P1 e P2</h1>
+  <span>Atualizado 09/06/2026 às 16h30</span>
+</div>
+
+<div class="week-tabs">
+  <button class="wtab active" onclick="showWeek('w1',this)">02–08/jun</button>
+  <button class="wtab" onclick="showWeek('w2',this)">09/jun →</button>
+  <button class="wtab" onclick="showWeek('wg',this)">Visão geral</button>
+</div>
+
+<!-- SEMANA ANTERIOR -->
+<div id="w1" class="section active">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">Total de tickets</div><div class="metric-value">7</div></div>
+    <div class="metric"><div class="metric-label">Entregues no prazo</div><div class="metric-value">5</div></div>
+    <div class="metric"><div class="metric-label">Em andamento</div><div class="metric-value">0</div></div>
+    <div class="metric"><div class="metric-label">Pendências externas</div><div class="metric-value">2</div></div>
+  </div>
+  <div class="chart-card">
+    <table>
+      <thead><tr><th style="width:44%">Documento</th><th style="width:14%">Criado em</th><th style="width:28%">Status</th><th style="width:14%">SLA</th></tr></thead>
+      <tbody>
+        <tr><td>Aditivo | Estaff Solucoes Tecnologicas</td><td>05/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
+        <tr><td>Aditivo | TECHNOBLAST</td><td>05/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
+        <tr><td>Aditivo | YSSY SOLUCOES S.A.</td><td>03/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
+        <tr><td>Aditivo | INNOVENT</td><td>01/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
+        <tr><td>Aditivo | PROJETO ALFA – Aliança de Laboratórios</td><td>01/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
+        <tr><td>Aditivo | Grupo Moas</td><td>03/jun</td><td><span class="badge b-externo">↻ Pend. externa</span></td><td class="sla-late">+1 dia útil</td></tr>
+        <tr><td>Aditivo | ROYAL ASSISTENCIA TECNICA</td><td>03/jun</td><td><span class="badge b-externo">↻ Pend. externa</span></td><td class="sla-late">+1 dia útil</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SEMANA ATUAL -->
+<div id="w2" class="section">
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">Total de tickets</div><div class="metric-value">5</div></div>
+    <div class="metric"><div class="metric-label">Em assinatura</div><div class="metric-value">3</div></div>
+    <div class="metric"><div class="metric-label">Em andamento</div><div class="metric-value">2</div></div>
+    <div class="metric"><div class="metric-label">Pendências externas</div><div class="metric-value">0</div></div>
+  </div>
+  <div class="chart-card">
+    <table>
+      <thead><tr><th style="width:44%">Documento</th><th style="width:14%">Criado em</th><th style="width:28%">Status</th><th style="width:14%">SLA</th></tr></thead>
+      <tbody>
+        <tr><td>Aditivo | Andrea Perrone Comunicação</td><td>09/jun</td><td><span class="badge b-assinatura">↗ Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
+        <tr><td>Aditivo | mywork</td><td>09/jun</td><td><span class="badge b-assinatura">↗ Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
+        <tr><td>Aditivo | MENTORIA EMPRESARIAL</td><td>09/jun</td><td><span class="badge b-assinatura">↗ Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
+        <tr><td>Aditivo | MARQUETERIE</td><td>08/jun</td><td><span class="badge b-cs">⏳ Ag. validação CS</span></td><td class="sla-ok">No prazo</td></tr>
+        <tr><td>Pipo Saúde – [Sales] Elaboração de contrato</td><td>09/jun</td><td><span class="badge b-analise">◎ Em análise Legal</span></td><td class="sla-ok">No prazo</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- VISÃO GERAL -->
+<div id="wg" class="section">
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-label">Tickets por semana</div>
+      <div class="legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#40002D"></span>Concluído</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#BE0380"></span>Em assinatura</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#EAC8DE"></span>Em andamento/CS</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#6B4D63"></span>Pend. externa</span>
+      </div>
+      <div style="position:relative;height:180px;">
+        <canvas id="barChart" role="img" aria-label="Tickets por semana">02-08/jun: 5 concluídos, 2 pendências externas. 09/jun: 3 em assinatura, 2 em andamento.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">Distribuição de status</div>
+      <div class="legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#40002D"></span>Concluído (5)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#BE0380"></span>Em assinatura (3)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#EAC8DE"></span>Em andamento/CS (3)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#6B4D63"></span>Pend. externa (2)</span>
+      </div>
+      <div style="position:relative;height:150px;margin-top:8px;">
+        <canvas id="donutChart" role="img" aria-label="Distribuição de status">5 concluídos, 3 em assinatura, 3 em andamento/CS, 2 pendências externas.</canvas>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card">
+    <div class="chart-label" style="margin-bottom:12px">Resumo por semana</div>
+    <table>
+      <thead><tr><th>Semana</th><th>Total</th><th>Entregues no prazo</th><th>Em andamento</th><th>Pend. externas</th></tr></thead>
+      <tbody>
+        <tr><td>02–08/jun</td><td>7</td><td>5</td><td>0</td><td>2</td></tr>
+        <tr><td>09/jun (atual)</td><td>5</td><td>0</td><td>5</td><td>0</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+function showWeek(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.wtab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  data: {
+    labels: ['02–08/jun', '09/jun'],
+    datasets: [
+      { label: 'Concluído', data: [5, 0], backgroundColor: '#40002D' },
+      { label: 'Em assinatura', data: [0, 3], backgroundColor: '#BE0380' },
+      { label: 'Em andamento/CS', data: [0, 2], backgroundColor: '#EAC8DE' },
+      { label: 'Pend. externa', data: [2, 0], backgroundColor: '#6B4D63' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { stacked: true, beginAtZero: true, ticks: { stepSize: 1, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.06)' } }
+    }
+  }
+});
+new Chart(document.getElementById('donutChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Concluído', 'Em assinatura', 'Em andamento/CS', 'Pend. externa'],
+    datasets: [{ data: [5, 3, 3, 2], backgroundColor: ['#40002D','#BE0380','#EAC8DE','#6B4D63'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '62%',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' ticket(s)' } } }
+  }
+});
+</script>
+</body>
+</html>

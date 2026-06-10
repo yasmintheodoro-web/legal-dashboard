@@ -6,175 +6,526 @@
 <title>Dashboard Legal | Documentos</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Google Sans', Arial, sans-serif; background: #fafafa; color: #222; padding: 24px; }
-.header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; border-bottom: 2.5px solid #BE0380; padding-bottom: 12px; }
-.header h1 { font-size: 16px; font-weight: 500; color: #BE0380; }
-.header span { font-size: 11px; color: #6B4D63; }
-.week-tabs { display: flex; gap: 6px; margin-bottom: 20px; }
-.wtab { font-size: 12px; padding: 5px 16px; border-radius: 20px; border: 1.5px solid #EAC8DE; cursor: pointer; background: transparent; color: #6B4D63; font-family: inherit; }
-.wtab.active { background: #BE0380; color: #fff; border-color: #BE0380; }
-.section { display: none; }
-.section.active { display: block; }
-.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-.metric { background: #F9E6F3; border-radius: 8px; padding: 14px 16px; border: 0.5px solid #EAC8DE; }
-.metric-label { font-size: 11px; color: #6B4D63; margin-bottom: 4px; }
-.metric-value { font-size: 28px; font-weight: 500; color: #40002D; }
-.charts-row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; margin-bottom: 16px; }
-.chart-card { background: #fff; border: 0.5px solid #EAC8DE; border-radius: 10px; padding: 16px 18px; }
-.chart-label { font-size: 10px; font-weight: 500; color: #6B4D63; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .06em; }
-.legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
-.leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #6B4D63; }
-.leg-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-th { text-align: left; font-size: 10px; font-weight: 500; color: #6B4D63; text-transform: uppercase; letter-spacing: .05em; padding: 0 8px 10px 0; border-bottom: 1.5px solid #EAC8DE; }
-td { padding: 8px 8px 8px 0; border-bottom: 0.5px solid #F3D8EC; vertical-align: middle; }
-.badge { display: inline-block; font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
-.b-concluido { background: #40002D; color: #F9E6F3; }
-.b-assinatura { background: #BE0380; color: #fff; }
-.b-cs { background: #EAC8DE; color: #40002D; }
-.b-analise { background: #F9E6F3; color: #BE0380; border: 1px solid #EAC8DE; }
-.b-externo { background: #6B4D63; color: #F9E6F3; }
-.sla-ok { color: #BE0380; font-size: 11px; }
-.sla-late { color: #40002D; font-size: 11px; font-weight: 600; }
-.summary-card { background: #fff; border: 0.5px solid #EAC8DE; border-radius: 10px; padding: 16px 18px; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Google Sans',Arial,sans-serif;background:#fafafa;color:#222;padding:20px 24px}
+.header{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2.5px solid #BE0380;padding-bottom:10px;margin-bottom:16px}
+.header h1{font-size:14px;font-weight:500;color:#BE0380}
+.header span{font-size:11px;color:#6B4D63}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tab{font-size:12px;padding:6px 14px;border-radius:8px;border:1.5px solid #EAC8DE;cursor:pointer;background:transparent;color:#6B4D63;font-family:inherit;line-height:1.4;text-align:center}
+.tab.on{background:#BE0380;color:#fff;border-color:#BE0380}
+.tr{font-size:12px;font-weight:500;display:block}
+.ts{font-size:10px;opacity:.75;display:block;margin-top:1px}
+.tab.on .ts{opacity:.9}
+.sec{display:none}.sec.on{display:block}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.card{background:#F9E6F3;border-radius:8px;padding:12px 14px;border:0.5px solid #EAC8DE}
+.card-lbl{font-size:10px;color:#6B4D63;margin-bottom:3px}
+.card-val{font-size:24px;font-weight:500;color:#40002D}
+.panel{background:#fff;border:0.5px solid #EAC8DE;border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.panel-lbl{font-size:10px;font-weight:500;color:#6B4D63;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+th{text-align:left;font-size:10px;font-weight:500;color:#6B4D63;text-transform:uppercase;letter-spacing:.04em;padding:0 6px 8px 0;border-bottom:1.5px solid #EAC8DE}
+td{padding:7px 6px 7px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;white-space:nowrap}
+.b1{background:#40002D;color:#F9E6F3}
+.b2{background:#BE0380;color:#fff}
+.b3{background:#EAC8DE;color:#40002D}
+.b4{background:#6B4D63;color:#F9E6F3}
+.b5{background:#F9E6F3;color:#BE0380;border:1px solid #EAC8DE}
+.tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500}
+.tag-cs{background:#EAC8DE;color:#40002D}
+.tag-sales{background:#F9E6F3;color:#BE0380;border:1px solid #EAC8DE}
+.sla-ok{color:#BE0380;font-size:11px}
+.sla-late{color:#40002D;font-size:11px;font-weight:600}
+.month-grid{display:flex;flex-wrap:wrap;gap:8px}
+.mcard{background:#F9E6F3;border:0.5px solid #EAC8DE;border-radius:8px;padding:10px 14px;min-width:72px;text-align:center}
+.mcard-lbl{font-size:10px;color:#6B4D63;margin-bottom:2px}
+.mcard-val{font-size:20px;font-weight:500;color:#40002D}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>Legal - Revenue | Tickets: Contratos SMB & Aditivos P1 e P2</h1>
-  <span>Atualizado 09/06/2026 às 16h30</span>
+  <span>Atualizado 10/06/2026 às 16h30</span>
 </div>
+<div class="tabs">
+<button class="tab on" onclick="sw('wg',this)"><span class="tr">Visão geral</span><span class="ts">&nbsp;</span></button>
+<button class="tab" onclick="sw('w0',this)"><span class="tr">08–12/jun</span><span class="ts">jun 2/26</span></button>
+<button class="tab" onclick="sw('w1',this)"><span class="tr">01–05/jun</span><span class="ts">jun 1/26</span></button>
+<button class="tab" onclick="sw('w2',this)"><span class="tr">25–29/mai</span><span class="ts">mai 4/26</span></button>
+<button class="tab" onclick="sw('w3',this)"><span class="tr">18–22/mai</span><span class="ts">mai 3/26</span></button>
+<button class="tab" onclick="sw('w4',this)"><span class="tr">11–15/mai</span><span class="ts">mai 2/26</span></button>
+<button class="tab" onclick="sw('w5',this)"><span class="tr">04–08/mai</span><span class="ts">mai 1/26</span></button>
+<button class="tab" onclick="sw('w6',this)"><span class="tr">27/abr–01/mai</span><span class="ts">abr 4/26</span></button>
+<button class="tab" onclick="sw('w7',this)"><span class="tr">20–24/abr</span><span class="ts">abr 3/26</span></button>
 
-<div class="week-tabs">
-  <button class="wtab active" onclick="showWeek('w1',this)">02–08/jun</button>
-  <button class="wtab" onclick="showWeek('w2',this)">09/jun →</button>
-  <button class="wtab" onclick="showWeek('wg',this)">Visão geral</button>
 </div>
-
-<!-- SEMANA ANTERIOR -->
-<div id="w1" class="section active">
-  <div class="metrics">
-    <div class="metric"><div class="metric-label">Total de tickets</div><div class="metric-value">7</div></div>
-    <div class="metric"><div class="metric-label">Entregues no prazo</div><div class="metric-value">5</div></div>
-    <div class="metric"><div class="metric-label">Em andamento</div><div class="metric-value">0</div></div>
-    <div class="metric"><div class="metric-label">Pendências externas</div><div class="metric-value">2</div></div>
+<div id="wg" class="sec on">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total geral</div><div class="card-val">283</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">252</div></div>
+    <div class="card"><div class="card-lbl">Semanas ativas</div><div class="card-val">60</div></div>
+    <div class="card"><div class="card-lbl">Meses</div><div class="card-val">15</div></div>
   </div>
-  <div class="chart-card">
-    <table>
-      <thead><tr><th style="width:44%">Documento</th><th style="width:14%">Criado em</th><th style="width:28%">Status</th><th style="width:14%">SLA</th></tr></thead>
-      <tbody>
-        <tr><td>Aditivo | Estaff Solucoes Tecnologicas</td><td>05/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
-        <tr><td>Aditivo | TECHNOBLAST</td><td>05/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
-        <tr><td>Aditivo | YSSY SOLUCOES S.A.</td><td>03/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
-        <tr><td>Aditivo | INNOVENT</td><td>01/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
-        <tr><td>Aditivo | PROJETO ALFA – Aliança de Laboratórios</td><td>01/jun</td><td><span class="badge b-concluido">✓ Concluído</span></td><td class="sla-ok">No prazo</td></tr>
-        <tr><td>Aditivo | Grupo Moas</td><td>03/jun</td><td><span class="badge b-externo">↻ Pend. externa</span></td><td class="sla-late">+1 dia útil</td></tr>
-        <tr><td>Aditivo | ROYAL ASSISTENCIA TECNICA</td><td>03/jun</td><td><span class="badge b-externo">↻ Pend. externa</span></td><td class="sla-late">+1 dia útil</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- SEMANA ATUAL -->
-<div id="w2" class="section">
-  <div class="metrics">
-    <div class="metric"><div class="metric-label">Total de tickets</div><div class="metric-value">5</div></div>
-    <div class="metric"><div class="metric-label">Em assinatura</div><div class="metric-value">3</div></div>
-    <div class="metric"><div class="metric-label">Em andamento</div><div class="metric-value">2</div></div>
-    <div class="metric"><div class="metric-label">Pendências externas</div><div class="metric-value">0</div></div>
-  </div>
-  <div class="chart-card">
-    <table>
-      <thead><tr><th style="width:44%">Documento</th><th style="width:14%">Criado em</th><th style="width:28%">Status</th><th style="width:14%">SLA</th></tr></thead>
-      <tbody>
-        <tr><td>Aditivo | Andrea Perrone Comunicação</td><td>09/jun</td><td><span class="badge b-assinatura">↗ Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
-        <tr><td>Aditivo | mywork</td><td>09/jun</td><td><span class="badge b-assinatura">↗ Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
-        <tr><td>Aditivo | MENTORIA EMPRESARIAL</td><td>09/jun</td><td><span class="badge b-assinatura">↗ Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
-        <tr><td>Aditivo | MARQUETERIE</td><td>08/jun</td><td><span class="badge b-cs">⏳ Ag. validação CS</span></td><td class="sla-ok">No prazo</td></tr>
-        <tr><td>Pipo Saúde – [Sales] Elaboração de contrato</td><td>09/jun</td><td><span class="badge b-analise">◎ Em análise Legal</span></td><td class="sla-ok">No prazo</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- VISÃO GERAL -->
-<div id="wg" class="section">
-  <div class="charts-row">
-    <div class="chart-card">
-      <div class="chart-label">Tickets por semana</div>
-      <div class="legend">
-        <span class="leg-item"><span class="leg-dot" style="background:#40002D"></span>Concluído</span>
-        <span class="leg-item"><span class="leg-dot" style="background:#BE0380"></span>Em assinatura</span>
-        <span class="leg-item"><span class="leg-dot" style="background:#EAC8DE"></span>Em andamento/CS</span>
-        <span class="leg-item"><span class="leg-dot" style="background:#6B4D63"></span>Pend. externa</span>
-      </div>
-      <div style="position:relative;height:180px;">
-        <canvas id="barChart" role="img" aria-label="Tickets por semana">02-08/jun: 5 concluídos, 2 pendências externas. 09/jun: 3 em assinatura, 2 em andamento.</canvas>
-      </div>
+  <div class="two">
+    <div class="panel">
+      <div class="panel-lbl">Volume por semana (últimas 3)</div>
+      <div style="position:relative;height:160px"><canvas id="barWeek" role="img" aria-label="Volume por semana">Últimas 3 semanas</canvas></div>
     </div>
-    <div class="chart-card">
-      <div class="chart-label">Distribuição de status</div>
-      <div class="legend">
-        <span class="leg-item"><span class="leg-dot" style="background:#40002D"></span>Concluído (5)</span>
-        <span class="leg-item"><span class="leg-dot" style="background:#BE0380"></span>Em assinatura (3)</span>
-        <span class="leg-item"><span class="leg-dot" style="background:#EAC8DE"></span>Em andamento/CS (3)</span>
-        <span class="leg-item"><span class="leg-dot" style="background:#6B4D63"></span>Pend. externa (2)</span>
-      </div>
-      <div style="position:relative;height:150px;margin-top:8px;">
-        <canvas id="donutChart" role="img" aria-label="Distribuição de status">5 concluídos, 3 em assinatura, 3 em andamento/CS, 2 pendências externas.</canvas>
-      </div>
+    <div class="panel">
+      <div class="panel-lbl">Volume mensal</div>
+      <div style="position:relative;height:160px"><canvas id="barMonth" role="img" aria-label="Volume por mês">Volume mensal</canvas></div>
     </div>
   </div>
-  <div class="summary-card">
-    <div class="chart-label" style="margin-bottom:12px">Resumo por semana</div>
+  <div class="panel">
+    <div class="panel-lbl">Resumo mensal</div>
+    <div class="month-grid"><div class="mcard"><div class="mcard-lbl">Abr/25</div><div class="mcard-val">8</div></div>
+<div class="mcard"><div class="mcard-lbl">Mai/25</div><div class="mcard-val">22</div></div>
+<div class="mcard"><div class="mcard-lbl">Jun/25</div><div class="mcard-val">24</div></div>
+<div class="mcard"><div class="mcard-lbl">Jul/25</div><div class="mcard-val">28</div></div>
+<div class="mcard"><div class="mcard-lbl">Ago/25</div><div class="mcard-val">22</div></div>
+<div class="mcard"><div class="mcard-lbl">Set/25</div><div class="mcard-val">24</div></div>
+<div class="mcard"><div class="mcard-lbl">Out/25</div><div class="mcard-val">17</div></div>
+<div class="mcard"><div class="mcard-lbl">Nov/25</div><div class="mcard-val">14</div></div>
+<div class="mcard"><div class="mcard-lbl">Dez/25</div><div class="mcard-val">19</div></div>
+<div class="mcard"><div class="mcard-lbl">Jan/26</div><div class="mcard-val">10</div></div>
+<div class="mcard"><div class="mcard-lbl">Fev/26</div><div class="mcard-val">21</div></div>
+<div class="mcard"><div class="mcard-lbl">Mar/26</div><div class="mcard-val">20</div></div>
+<div class="mcard"><div class="mcard-lbl">Abr/26</div><div class="mcard-val">19</div></div>
+<div class="mcard"><div class="mcard-lbl">Mai/26</div><div class="mcard-val">23</div></div>
+<div class="mcard"><div class="mcard-lbl">Jun/26</div><div class="mcard-val">12</div></div>
+</div>
+  </div>
+</div><div id="w0" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">0</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">2</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">3</div></div>
+  </div>
+  <div class="panel">
     <table>
-      <thead><tr><th>Semana</th><th>Total</th><th>Entregues no prazo</th><th>Em andamento</th><th>Pend. externas</th></tr></thead>
-      <tbody>
-        <tr><td>02–08/jun</td><td>7</td><td>5</td><td>0</td><td>2</td></tr>
-        <tr><td>09/jun (atual)</td><td>5</td><td>0</td><td>5</td><td>0</td></tr>
-      </tbody>
+      <thead><tr>
+        <th style="width:42%">Documento</th>
+        <th style="width:9%">Criado</th>
+        <th style="width:10%">Sol.</th>
+        <th style="width:25%">Status</th>
+        <th style="width:14%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>08/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b3">⏳ Ag. validação CS</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>09/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>09/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>09/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b5">◎ Em análise</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Pipo Saúde - [Sales] Elaboração de contrato</td>
+          <td>09/06</td>
+          <td><span class="tag tag-sales">Sales</span></td>
+          <td><span class="badge b5">◎ Em análise</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div><div id="w1" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">7</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">0</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">5</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">2</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:42%">Documento</th>
+        <th style="width:9%">Criado</th>
+        <th style="width:10%">Sol.</th>
+        <th style="width:25%">Status</th>
+        <th style="width:14%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>01/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>01/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>03/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>03/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b3">⏳ Ag. validação CS</span></td>
+          <td class="sla-late">+2 dias útil</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>03/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b5">◎ Em análise</span></td>
+          <td class="sla-late">+2 dias útil</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>05/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>05/06</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div><div id="w2" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">6</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">1</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">5</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:42%">Documento</th>
+        <th style="width:9%">Criado</th>
+        <th style="width:10%">Sol.</th>
+        <th style="width:25%">Status</th>
+        <th style="width:14%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td style="font-size:11px">Aditivo - Reajuste Be Five</td>
+          <td>25/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Instituto Hoc de Hemoterapia Ltda - [Sales] Elaboração …</td>
+          <td>26/05</td>
+          <td><span class="tag tag-sales">Sales</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>26/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>27/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>27/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>28/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div><div id="w3" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">9</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">2</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">6</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">1</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:42%">Documento</th>
+        <th style="width:9%">Criado</th>
+        <th style="width:10%">Sol.</th>
+        <th style="width:25%">Status</th>
+        <th style="width:14%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td style="font-size:11px">[CS] Aditivo de Renovação com CAC</td>
+          <td>18/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>18/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Elaborar rescisão contratual - Silicone Center</td>
+          <td>18/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b3">⏳ Ag. validação CS</span></td>
+          <td class="sla-late">+14 dias útil</td>
+        </tr><tr>
+          <td style="font-size:11px">Elaboração Documentos | [CS] Graded</td>
+          <td>19/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>20/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">WSI SISTEMAS ELETRONICOS E COMERCIO - [Sales] Elaboraçã…</td>
+          <td>20/05</td>
+          <td><span class="tag tag-sales">Sales</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>21/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>21/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>21/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div><div id="w4" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">4</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">1</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:42%">Documento</th>
+        <th style="width:9%">Criado</th>
+        <th style="width:10%">Sol.</th>
+        <th style="width:25%">Status</th>
+        <th style="width:14%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>11/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Elaboração Documentos | Deal CS - PROGROUP TECNOLOGIA D…</td>
+          <td>15/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Wecare - Aditivo</td>
+          <td>15/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo - Inclusão de planos</td>
+          <td>15/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo - Affinity</td>
+          <td>15/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div><div id="w5" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">3</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">2</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">1</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:42%">Documento</th>
+        <th style="width:9%">Criado</th>
+        <th style="width:10%">Sol.</th>
+        <th style="width:25%">Status</th>
+        <th style="width:14%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>08/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>08/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>08/05</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div><div id="w6" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">3</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">2</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">1</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">0</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:42%">Documento</th>
+        <th style="width:9%">Criado</th>
+        <th style="width:10%">Sol.</th>
+        <th style="width:25%">Status</th>
+        <th style="width:14%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td style="font-size:11px">{ABM} Dennis Group - [Sales] Aditivo de Inclusão/Exclus…</td>
+          <td>28/04</td>
+          <td><span class="tag tag-sales">Sales</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>28/04</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">METRICAZ TECNOLOGIA E MARKETING - [Sales] Elaboração de…</td>
+          <td>30/04</td>
+          <td><span class="tag tag-sales">Sales</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div><div id="w7" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div></div>
+    <div class="card"><div class="card-lbl">Concluídos</div><div class="card-val">3</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">1</div></div>
+    <div class="card"><div class="card-lbl">Em andamento</div><div class="card-val">1</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:42%">Documento</th>
+        <th style="width:9%">Criado</th>
+        <th style="width:10%">Sol.</th>
+        <th style="width:25%">Status</th>
+        <th style="width:14%">SLA</th>
+      </tr></thead>
+      <tbody><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>22/04</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Novo contrato - Credikasa Bjax</td>
+          <td>22/04</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">[CS] A2 Capital - [Sales] Aditivo de Inclusão de Planos</td>
+          <td>23/04</td>
+          <td><span class="tag tag-sales">Sales</span></td>
+          <td><span class="badge b1">✓ Concluído</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>24/04</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b2">↗ Em assinatura</span></td>
+          <td class="sla-ok">No prazo</td>
+        </tr><tr>
+          <td style="font-size:11px">Aditivo de reajuste + renovação |  [CS] Renovação 2026 …</td>
+          <td>24/04</td>
+          <td><span class="tag tag-cs">CS</span></td>
+          <td><span class="badge b3">⏳ Ag. validação CS</span></td>
+          <td class="sla-late">+30 dias útil</td>
+        </tr></tbody>
     </table>
   </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-function showWeek(id, btn) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.wtab').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
+function sw(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
 }
-new Chart(document.getElementById('barChart'), {
-  type: 'bar',
-  data: {
-    labels: ['02–08/jun', '09/jun'],
-    datasets: [
-      { label: 'Concluído', data: [5, 0], backgroundColor: '#40002D' },
-      { label: 'Em assinatura', data: [0, 3], backgroundColor: '#BE0380' },
-      { label: 'Em andamento/CS', data: [0, 2], backgroundColor: '#EAC8DE' },
-      { label: 'Pend. externa', data: [2, 0], backgroundColor: '#6B4D63' }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
-    scales: {
-      x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
-      y: { stacked: true, beginAtZero: true, ticks: { stepSize: 1, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.06)' } }
-    }
-  }
+new Chart(document.getElementById('barWeek'),{
+  type:'bar',
+  data:{labels:["mai 4/26", "jun 1/26", "jun 2/26"],datasets:[{data:[6, 7, 5],backgroundColor:["#EAC8DE", "#EAC8DE", "#BE0380"],borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw+' tickets'}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{beginAtZero:true,ticks:{stepSize:2,font:{size:11}},grid:{color:'rgba(0,0,0,0.05)'}}}}
 });
-new Chart(document.getElementById('donutChart'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Concluído', 'Em assinatura', 'Em andamento/CS', 'Pend. externa'],
-    datasets: [{ data: [5, 3, 3, 2], backgroundColor: ['#40002D','#BE0380','#EAC8DE','#6B4D63'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false, cutout: '62%',
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' ticket(s)' } } }
-  }
+new Chart(document.getElementById('barMonth'),{
+  type:'bar',
+  data:{labels:["Abr/25", "Mai/25", "Jun/25", "Jul/25", "Ago/25", "Set/25", "Out/25", "Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],datasets:[{data:[8, 22, 24, 28, 22, 24, 17, 14, 19, 10, 21, 20, 19, 23, 12],backgroundColor:["#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#EAC8DE", "#BE0380"],borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw+' tickets'}}},scales:{x:{grid:{display:false},ticks:{font:{size:10},maxRotation:45,autoSkip:false}},y:{beginAtZero:true,ticks:{stepSize:5,font:{size:11}},grid:{color:'rgba(0,0,0,0.05)'}}}}
 });
 </script>
 </body>

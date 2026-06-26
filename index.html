@@ -47,6 +47,13 @@ td{padding:6px 6px 6px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
 .critico-emp{font-size:12px;font-weight:500;color:#40002D}
 .critico-det{font-size:10px;color:#6B4D63;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .critico-dias{font-size:11px;font-weight:500;color:#993C1D}
+
+.sla-tooltip{position:relative;cursor:help}
+.sla-tooltip::after{content:attr(data-tip);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background:#40002D;color:#F9E6F3;font-size:10px;padding:4px 8px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:10;max-width:220px;white-space:normal;text-align:center;line-height:1.4}
+.sla-tooltip::before{content:'';position:absolute;bottom:108%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#40002D;opacity:0;pointer-events:none;transition:opacity .15s}
+.sla-tooltip:hover::after,.sla-tooltip:hover::before{opacity:1}
+.sla-disclaimer{font-size:10px;color:#6B4D63;margin-top:12px;padding:8px 12px;background:#F9E6F3;border-radius:6px;border-left:3px solid #BE0380;line-height:1.6}
+.sla-disclaimer strong{color:#40002D}
 </style>
 </head>
 <body>
@@ -154,13 +161,17 @@ td{padding:6px 6px 6px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
 <tr><td title="Aditivo de reajuste + renova&#231;&#227;o | Inesplorato">Aditivo de reajuste + renova&#231;&#227;o | Inesplorato</td><td title="Inesplorato">Inesplorato</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>24/06</td><td><span class="badge b1">&#10003; Assinado</span></td><td class="sla-ok">No prazo</td></tr>
 <tr><td title="Aditivo de reajuste + renova&#231;&#227;o | Reparadora Rsd Brasil Ltda">Aditivo de reajuste + renova&#231;&#227;o | Reparadora Rsd Brasil Ltda</td><td title="Reparadora Rsd Brasil Ltda">Reparadora Rsd Brasil</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>23/06</td><td><span class="badge b2">&#8599; Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
 <tr><td title="{ABM} Estoca - [Sales] Elabora&#231;&#227;o de contrato">{ABM} Estoca - [Sales] Elabora&#231;&#227;o de contrato</td><td title="Estoca">Estoca</td><td><span class="tag tsmb">SMB</span></td><td><span class="tag tsl">Sales</span></td><td>25/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o lead</span></td><td class="sla-ok">No prazo</td></tr>
-<tr><td title="Aditivo de reajuste + renova&#231;&#227;o | INSIDER STORE">Aditivo de reajuste + renova&#231;&#227;o | INSIDER STORE</td><td title="INSIDER STORE">INSIDER STORE</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>24/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o CS</span></td><td class="sla-late">Prazo: 27/06</td></tr>
-<tr><td title="Aditivo de reajuste + renova&#231;&#227;o | Assoc. Escolar Benjamin Constant">Aditivo de reajuste + renova&#231;&#227;o | Assoc. Escolar Benjamin Constant</td><td title="Assoc. Escolar Benjamin Constant">Assoc. Escolar Benjamin&#8230;</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>23/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o lead</span></td><td class="sla-late">+1 dia</td></tr>
-<tr><td title="Aditivo de reajuste + renova&#231;&#227;o | Sinergia Animal">Aditivo de reajuste + renova&#231;&#227;o | Sinergia Animal</td><td title="Sinergia Animal">Sinergia Animal</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>23/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o lead</span></td><td class="sla-late">+1 dia</td></tr>
-<tr><td title="Aditivo - Wecare - Equi. Apto">Aditivo - Wecare - Equi. Apto</td><td title="Wecare">Wecare</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>22/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o CS</span></td><td class="sla-late">+2 dias</td></tr>
+<tr><td title="Aditivo de reajuste + renova&#231;&#227;o | INSIDER STORE">Aditivo de reajuste + renova&#231;&#227;o | INSIDER STORE</td><td title="INSIDER STORE">INSIDER STORE</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>24/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o CS</span></td><td class="sla-ok">Prazo: 30/06</td></tr>
+<tr><td title="Aditivo de reajuste + renova&#231;&#227;o | Assoc. Escolar Benjamin Constant">Aditivo de reajuste + renova&#231;&#227;o | Assoc. Escolar Benjamin Constant</td><td title="Assoc. Escolar Benjamin Constant">Assoc. Escolar Benjamin&#8230;</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>23/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o lead</span></td><td class="sla-late sla-tooltip" data-tip="Fora do prazo pois aguarda valida&#231;&#227;o do lead">+1 dia &#9432;</td></tr>
+<tr><td title="Aditivo de reajuste + renova&#231;&#227;o | Sinergia Animal">Aditivo de reajuste + renova&#231;&#227;o | Sinergia Animal</td><td title="Sinergia Animal">Sinergia Animal</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>23/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o lead</span></td><td class="sla-late sla-tooltip" data-tip="Fora do prazo pois aguarda valida&#231;&#227;o do lead">+1 dia &#9432;</td></tr>
+<tr><td title="Aditivo - Wecare - Equi. Apto">Aditivo - Wecare - Equi. Apto</td><td title="Wecare">Wecare</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>22/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o CS</span></td><td class="sla-late sla-tooltip" data-tip="Fora do prazo pois aguarda valida&#231;&#227;o CS (Alice)">+2 dias &#9432;</td></tr>
       </tbody>
     </table>
+  
+  <div class="sla-disclaimer">
+    <strong>SLA de 3 dias &#250;teis</strong> &mdash; contempla a elabora&#231;&#227;o e an&#225;lise pelo time solicitante (CS ou Sales), valida&#231;&#227;o pelo lead e envio do documento para assinatura. Quando o prazo &#233; ultrapassado por pend&#234;ncias externas ao Legal, o motivo est&#225; indicado na coluna de status (passe o mouse sobre o prazo para ver o detalhe).
   </div>
+</div>
 </div>
 <div id="w1" class="sec">
   <div class="cards">
@@ -184,11 +195,15 @@ td{padding:6px 6px 6px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
 <tr><td title="[CS] Tombamento de porte - Infinity Corretora (novo contrato)">[CS] Tombamento de porte - Infinity Corretora (novo contrato)</td><td title="Infinity Corretora">Infinity Corretora</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>19/06</td><td><span class="badge b2">&#8599; Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
 <tr><td title="Termo de Rescis&#227;o B2B - Corretora Infinity Seguros Ltda.">Termo de Rescis&#227;o B2B - Corretora Infinity Seguros Ltda.</td><td title="Infinity Seguros">Infinity Seguros</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>19/06</td><td><span class="badge b1">&#10003; Assinado</span></td><td class="sla-ok">No prazo</td></tr>
 <tr><td title="Termo de Rescis&#227;o B2B - Lucas de Oliveira Alves Corretora de Seguros">Termo de Rescis&#227;o B2B - Lucas de Oliveira Alves Corretora&#8230;</td><td title="Lucas de Oliveira Alves">Lucas de Oliveira Alves</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>19/06</td><td><span class="badge b1">&#10003; Assinado</span></td><td class="sla-ok">No prazo</td></tr>
-<tr><td title="Aditivo de reajuste + renova&#231;&#227;o | [CS] Renova&#231;&#227;o 2026 | Sal&#250;">Aditivo de reajuste + renova&#231;&#227;o | [CS] Renova&#231;&#227;o 2026 &#8230;</td><td title="Sal&#250;">Sal&#250;</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>18/06</td><td><span class="badge b3">&#9203; Ag. CS e Offering (diverg. de vidas)</span></td><td class="sla-late">+4 dias</td></tr>
-<tr><td title="Corretora Estilo - [Sales] Elabora&#231;&#227;o de contrato">Corretora Estilo - [Sales] Elabora&#231;&#227;o de contrato</td><td title="Corretora Estilo">Corretora Estilo</td><td><span class="tag tsmb">SMB</span></td><td><span class="tag tsl">Sales</span></td><td>19/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o CS e lead</span></td><td class="sla-late">+3 dias</td></tr>
+<tr><td title="Aditivo de reajuste + renova&#231;&#227;o | [CS] Renova&#231;&#227;o 2026 | Sal&#250;">Aditivo de reajuste + renova&#231;&#227;o | [CS] Renova&#231;&#227;o 2026 &#8230;</td><td title="Sal&#250;">Sal&#250;</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>18/06</td><td><span class="badge b3">&#9203; Ag. CS e Offering (diverg. de vidas)</span></td><td class="sla-late sla-tooltip" data-tip="Fora do prazo: aguarda valida&#231;&#227;o CS e Offering (divergência no n&#250; de vidas)">+4 dias &#9432;</td></tr>
+<tr><td title="Corretora Estilo - [Sales] Elabora&#231;&#227;o de contrato">Corretora Estilo - [Sales] Elabora&#231;&#227;o de contrato</td><td title="Corretora Estilo">Corretora Estilo</td><td><span class="tag tsmb">SMB</span></td><td><span class="tag tsl">Sales</span></td><td>19/06</td><td><span class="badge b3">&#9203; Ag. valida&#231;&#227;o CS e lead</span></td><td class="sla-late sla-tooltip" data-tip="Fora do prazo: aguarda valida&#231;&#227;o do CS e do lead">+3 dias &#9432;</td></tr>
       </tbody>
     </table>
+  
+  <div class="sla-disclaimer">
+    <strong>SLA de 3 dias &#250;teis</strong> &mdash; contempla a elabora&#231;&#227;o e an&#225;lise pelo time solicitante (CS ou Sales), valida&#231;&#227;o pelo lead e envio do documento para assinatura. Quando o prazo &#233; ultrapassado por pend&#234;ncias externas ao Legal, o motivo est&#225; indicado na coluna de status (passe o mouse sobre o prazo para ver o detalhe).
   </div>
+</div>
 </div>
 <div id="w2" class="sec">
   <div class="cards">

@@ -38,6 +38,7 @@ td{padding:6px 6px 6px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
 .tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500}
 .tcs{background:#EAC8DE;color:#40002D}.tsl{background:#F9E6F3;color:#BE0380;border:1px solid #EAC8DE}
 .tat{background:#40002D;color:#F9E6F3}.tsmb{background:#BE0380;color:#fff}
+.tres{background:#D4A0C4;color:#40002D}
 .sla-ok{color:#BE0380;font-size:11px}.sla-late{color:#40002D;font-size:11px;font-weight:600}
 .month-grid{display:flex;flex-wrap:wrap;gap:8px}
 .mcard{background:#F9E6F3;border:0.5px solid #EAC8DE;border-radius:8px;padding:10px 14px;min-width:68px;text-align:center}
@@ -58,11 +59,15 @@ td{padding:6px 6px 6px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
 </head>
 <body>
 <div class="hdr">
-  <h1>Legal - Revenue | Tickets: Contratos SMB &amp; Aditivos P1 e P2</h1>
-  <span>Atualizado 27/06/2026 &#224;s 16h30</span>
+  <h1>Legal | Documentos</h1>
+  <span>Atualizado 21/07/2026 &#224;s 09h30</span>
 </div>
 <div class="tabs">
-<button class="tab on" onclick="sw('wg',this)"><span class="tr">Vis&#227;o geral</span><span class="ts">&nbsp;</span></button>
+<button class="tab" onclick="sw('wg',this)"><span class="tr">Vis&#227;o geral</span><span class="ts">&nbsp;</span></button>
+<button class="tab on" onclick="sw('wA',this)"><span class="tr">20&#8211;25/jul</span><span class="ts">jul 3/26</span></button>
+<button class="tab on" onclick="sw('w20260720',this)"><span class="tr">20&#8211;24/jul</span><span class="ts">jul 4/26</span></button>
+<button class="tab" onclick="sw('w20260713',this)"><span class="tr">13&#8211;17/jul</span><span class="ts">jul 3/26</span></button>
+<button class="tab" onclick="sw('wB',this)"><span class="tr">13&#8211;18/jul</span><span class="ts">jul 2/26</span></button>
 <button class="tab" onclick="sw('w0',this)"><span class="tr">23&#8211;27/jun</span><span class="ts">jun 5/26</span></button>
 <button class="tab" onclick="sw('w1',this)"><span class="tr">16&#8211;20/jun</span><span class="ts">jun 4/26</span></button>
 <button class="tab" onclick="sw('w2',this)"><span class="tr">08&#8211;12/jun</span><span class="ts">jun 3/26</span></button>
@@ -80,10 +85,10 @@ td{padding:6px 6px 6px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
 </div>
 <div id="wg" class="sec on">
   <div class="cards">
-    <div class="card"><div class="card-lbl">Total geral</div><div class="card-val">315</div><div class="card-sub">235 Aditivos &#183; 80 SMB</div></div>
-    <div class="card"><div class="card-lbl">Aditivos</div><div class="card-val">235</div><div class="card-sub">75% do volume</div></div>
-    <div class="card"><div class="card-lbl">SMB</div><div class="card-val">80</div><div class="card-sub">25% do volume</div></div>
-    <div class="card"><div class="card-lbl">Semanas ativas</div><div class="card-val">63</div><div class="card-sub">15 meses</div></div>
+    <div class="card"><div class="card-lbl">Total geral</div><div class="card-val">335</div><div class="card-sub">248 Aditivos &#183; 87 contratos/rescis&otilde;es</div></div>
+    <div class="card"><div class="card-lbl">Aditivos B2B</div><div class="card-val">248</div><div class="card-sub">74% do volume</div></div>
+    <div class="card"><div class="card-lbl">Contratos / Rescis&otilde;es</div><div class="card-val">87</div><div class="card-sub">26% do volume</div></div>
+    <div class="card"><div class="card-lbl">Semanas ativas</div><div class="card-val">65</div><div class="card-sub">15 meses</div></div>
   </div>
   <div class="two">
     <div class="panel">
@@ -105,28 +110,30 @@ td{padding:6px 6px 6px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
     </div>
     <div class="panel" style="border-left:3px solid #D85A30;border-radius:0 10px 10px 0">
       <div class="panel-lbl" style="color:#993C1D">Casos cr&#237;ticos</div>
-      <div class="critico">
+    <div class="critico">
       <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <div class="critico-emp">Elaborar rescis&#227;o contratual - Sili</div>
-        <div class="critico-dias">+14 dias &#250;teis</div>
+        <div class="critico-emp">Aditivo de reajuste</div>
+        <div class="critico-dias">+7 dias &#250;teis</div>
       </div>
-      <div class="critico-det">Elaborar rescis&#227;o contratual - Silicone Center</div>
-      <div style="margin-top:4px"><span class="tag tat" style="font-size:9px">Aditivo</span> <span style="font-size:10px;color:#6B4D63">Necess&#225;rio entender demanda</span></div>
+      <div class="critico-det">[CS] Genial Care - Aditivo de reajuste...</div>
+      <div style="margin-top:4px"><span class="tag tat">Aditivo</span> <span style="font-size:10px;color:#6B4D63">Ag. CS/Sales ou Empresa</span></div>
     </div>
-<div class="critico">
+    <div class="critico">
       <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <div class="critico-emp">Creditas</div>
-        <div class="critico-dias">+30 dias &#250;teis</div>
+        <div class="critico-emp">Jazz Side</div>
+        <div class="critico-dias">+4 dias &#250;teis</div>
       </div>
-      <div class="critico-det">Aditivo de reajuste + renova&#231;&#227;o |  [CS] Renova&#231;&#227;o 2026 |  Cr&#8230;</div>
-      <div style="margin-top:4px"><span class="tag tat" style="font-size:9px">Aditivo</span> <span style="font-size:10px;color:#6B4D63">Necess&#225;rio entender demanda</span></div>
+      <div class="critico-det">Jazz Side - [Sales] Elaboracao de contrato...</div>
+      <div style="margin-top:4px"><span class="tag tsmb">SMB</span> <span style="font-size:10px;color:#6B4D63">Ag. CS/Sales ou Empresa</span></div>
     </div>
+
 
     </div>
   </div>
   <div class="panel">
     <div class="panel-lbl">Resumo mensal</div>
-    <div class="month-grid"><div class="mcard"><div class="mcard-lbl">Jun/26</div><div class="mcard-val">44</div></div>
+    <div class="month-grid"><div class="mcard"><div class="mcard-lbl">Jul/26</div><div class="mcard-val">20</div></div>
+<div class="mcard"><div class="mcard-lbl">Jun/26</div><div class="mcard-val">44</div></div>
 <div class="mcard"><div class="mcard-lbl">Mai/26</div><div class="mcard-val">23</div></div>
 <div class="mcard"><div class="mcard-lbl">Abr/26</div><div class="mcard-val">19</div></div>
 <div class="mcard"><div class="mcard-lbl">Mar/26</div><div class="mcard-val">20</div></div>
@@ -143,7 +150,114 @@ td{padding:6px 6px 6px 0;border-bottom:0.5px solid #F3D8EC;vertical-align:middle
 <div class="mcard"><div class="mcard-lbl">Abr/25</div><div class="mcard-val">8</div></div>
 </div>
   </div>
-</div><div id="w0" class="sec">
+</div><div id="w20260720" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div><div class="card-sub">&nbsp;</div></div>
+    <div class="card"><div class="card-lbl">Em an&#225;lise pelo Legal</div><div class="card-val">4</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">0</div></div>
+    <div class="card"><div class="card-lbl">Pend. externas</div><div class="card-val">1</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:30%">Documento</th><th style="width:18%">Empresa</th><th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th><th style="width:8%">Criado</th><th style="width:18%">Status</th><th style="width:10%">SLA</th>
+      </tr></thead>
+      <tbody>
+<tr><td title="Aditivo de reajuste | [CS] VIVACITTA SERVICOS DE ENFERMAGEM">Aditivo de reajuste | [CS] VIVACITTA SERVICOS&#8230;</td><td title="Aditivo de reajuste | [CS] VIV">Aditivo de reajuste | &#8230;</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>20/jul</td><td><span class="badge b4">&#9679; Em an&#225;lise pelo Legal</span></td><td class="sla-ok">Vence 23/jul</td></tr>
+<tr><td title="Aditivo de reajuste | [CS] TRYTOKU BRASIL LTDA">Aditivo de reajuste | [CS] TRYTOKU BRASIL LTD&#8230;</td><td title="Aditivo de reajuste | [CS] TRY">Aditivo de reajuste | &#8230;</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>20/jul</td><td><span class="badge b4">&#9679; Em an&#225;lise pelo Legal</span></td><td class="sla-ok">Vence 23/jul</td></tr>
+<tr><td title="[CS] Brandlovrs - Adventures Tecnologia - Aditivo">[CS] Brandlovrs - Adventures Tecnologia - Adi&#8230;</td><td title="Aditivo">Aditivo</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>20/jul</td><td><span class="badge b4">&#9679; Em an&#225;lise pelo Legal</span></td><td class="sla-ok">Vence 23/jul</td></tr>
+<tr><td title="[CS] Shotgun Live - Aditivo de reajuste">[CS] Shotgun Live - Aditivo de reajuste</td><td title="Aditivo de reajuste">Aditivo de reajuste</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>20/jul</td><td><span class="badge b4">&#9679; Em an&#225;lise pelo Legal</span></td><td class="sla-ok">Vence 23/jul</td></tr>
+<tr><td title="HK SOLUCOES - [Sales] Elaboracao de contrato">HK SOLUCOES - [Sales] Elaboracao de contrato</td><td title="HK SOLUCOES">HK SOLUCOES</td><td><span class="tag tsmb">SMB</span></td><td><span class="tag tsl">Sales</span></td><td>20/jul</td><td><span class="badge b3">&#9203; Ag. CS/Sales ou Empresa</span></td><td class="sla-ok">SLA pausado</td></tr>
+      </tbody>
+    </table>
+  <div class="sla-disclaimer">
+    <strong>SLA de 3 dias &#250;teis</strong> &mdash; contagem a partir da cria&#231;&#227;o, apenas dias &#250;teis (seg&#8211;sex). Tickets em <em>Ag. CS/Sales ou Empresa</em> est&#227;o com SLA pausado &#8212; pend&#234;ncia &#233; externa ao Legal.
+  </div>
+</div>
+</div>
+<div id="w20260713" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">6</div><div class="card-sub">&nbsp;</div></div>
+    <div class="card"><div class="card-lbl">Em an&#225;lise pelo Legal</div><div class="card-val">1</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">2</div></div>
+    <div class="card"><div class="card-lbl">Pend. externas</div><div class="card-val">3</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:30%">Documento</th><th style="width:18%">Empresa</th><th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th><th style="width:8%">Criado</th><th style="width:18%">Status</th><th style="width:10%">SLA</th>
+      </tr></thead>
+      <tbody>
+<tr><td title="CENTER GARBIN UTILIDADES DOMESTICAS - Aditivo [CS]">CENTER GARBIN UTILIDADES DOMESTICAS - Aditivo&#8230;</td><td title="CENTER GARBIN UTILIDADES DOMES">CENTER GARBIN UTILIDAD&#8230;</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>13/jul</td><td><span class="badge b2">&#8599; Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
+<tr><td title="TECHNOBLAST - Rescisao Contratual [CS]">TECHNOBLAST - Rescisao Contratual [CS]</td><td title="TECHNOBLAST">TECHNOBLAST</td><td><span class="tag tres">Rescis&#227;o</span></td><td><span class="tag tcs">CS</span></td><td>14/jul</td><td><span class="badge b2">&#8599; Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
+<tr><td title="[CS] Grupo Albion - Aditivo de reajuste">[CS] Grupo Albion - Aditivo de reajuste</td><td title="Aditivo de reajuste">Aditivo de reajuste</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>17/jul</td><td><span class="badge b4">&#9679; Em an&#225;lise pelo Legal</span></td><td class="sla-ok">Vence 22/jul</td></tr>
+<tr><td title="Jazz Side - [Sales] Elaboracao de contrato">Jazz Side - [Sales] Elaboracao de contrato</td><td title="Jazz Side">Jazz Side</td><td><span class="tag tsmb">SMB</span></td><td><span class="tag tsl">Sales</span></td><td>15/jul</td><td><span class="badge b3">&#9203; Ag. CS/Sales ou Empresa</span></td><td class="sla-ok">SLA pausado</td></tr>
+<tr><td title="Oceane - Rescisao Contratual | [CS]">Oceane - Rescisao Contratual | [CS]</td><td title="Oceane">Oceane</td><td><span class="tag tres">Rescis&#227;o</span></td><td><span class="tag tcs">CS</span></td><td>16/jul</td><td><span class="badge b3">&#9203; Ag. CS/Sales ou Empresa</span></td><td class="sla-ok">SLA pausado</td></tr>
+<tr><td title="[CS] Abstartups - Aditivo de reajuste">[CS] Abstartups - Aditivo de reajuste</td><td title="Aditivo de reajuste">Aditivo de reajuste</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>16/jul</td><td><span class="badge b3">&#9203; Ag. CS/Sales ou Empresa</span></td><td class="sla-ok">SLA pausado</td></tr>
+      </tbody>
+    </table>
+  <div class="sla-disclaimer">
+    <strong>SLA de 3 dias &#250;teis</strong> &mdash; contagem a partir da cria&#231;&#227;o, apenas dias &#250;teis (seg&#8211;sex). Tickets em <em>Ag. CS/Sales ou Empresa</em> est&#227;o com SLA pausado &#8212; pend&#234;ncia &#233; externa ao Legal.
+  </div>
+</div>
+</div>
+<div id="wA" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">5</div><div class="card-sub">&nbsp;</div></div>
+    <div class="card"><div class="card-lbl">Em análise pelo Legal</div><div class="card-val">4</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">0</div></div>
+    <div class="card"><div class="card-lbl">Pend. externas</div><div class="card-val">1</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:30%">Documento</th><th style="width:18%">Empresa</th><th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th><th style="width:8%">Criado</th><th style="width:18%">Status</th><th style="width:10%">SLA</th>
+      </tr></thead>
+      <tbody>
+<tr><td title="Aditivo de reajuste | [CS] VIVACITTA Serviços de Enfermagem">Aditivo de reajuste | [CS] VIVACITTA Ser…</td><td title="VIVACITTA Serv. Enfermagem">VIVACITTA Serv. Enferm…</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>20/07</td><td><span class="badge b4">&#9679; Em análise pelo Legal</span></td><td class="sla-ok">Vence 23/jul</td></tr>
+<tr><td title="Aditivo de reajuste | [CS] TRYTOKU BRASIL LTDA">Aditivo de reajuste | [CS] TRYTOKU BRASI…</td><td title="TRYTOKU BRASIL LTDA">TRYTOKU BRASIL LTDA</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>20/07</td><td><span class="badge b4">&#9679; Em análise pelo Legal</span></td><td class="sla-ok">Vence 23/jul</td></tr>
+<tr><td title="[CS] Brandlovrs - Adventures Tecnologia Ltda - Aditivo">[CS] Brandlovrs - Adventures Tecnologia …</td><td title="Brandlovrs">Brandlovrs</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>20/07</td><td><span class="badge b4">&#9679; Em análise pelo Legal</span></td><td class="sla-ok">Vence 23/jul</td></tr>
+<tr><td title="[CS] Shotgun Live - Aditivo">[CS] Shotgun Live - Aditivo</td><td title="Shotgun Live">Shotgun Live</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>20/07</td><td><span class="badge b4">&#9679; Em análise pelo Legal</span></td><td class="sla-ok">Vence 23/jul</td></tr>
+<tr><td title="HK SOLUÇÕES E SERVIÇOS LTDA - [Sales] Elaboração de contrato">HK SOLUÇÕES E SERVIÇOS LTDA - [Sales] El…</td><td title="HK Soluções (via Sollus)">HK Soluções (via Sollu…</td><td><span class="tag tsmb">SMB</span></td><td><span class="tag tsl">Sales</span></td><td>20/07</td><td><span class="badge b3">&#9203; Ag. CS/Sales ou Empresa</span></td><td class="sla-ok">SLA pausado</td></tr>
+      </tbody>
+    </table>
+  <div class="sla-disclaimer">
+    <strong>SLA de 3 dias úteis</strong> &mdash; contagem a partir da criação do ticket, apenas dias úteis (seg–sex). Tickets em <em>Ag. CS/Sales ou Empresa</em> estão com SLA pausado — pendência é externa ao Legal.
+  </div>
+</div>
+</div>
+<div id="wB" class="sec">
+  <div class="cards">
+    <div class="card"><div class="card-lbl">Total</div><div class="card-val">7</div><div class="card-sub">&nbsp;</div></div>
+    <div class="card"><div class="card-lbl">Em análise pelo Legal</div><div class="card-val">1</div></div>
+    <div class="card"><div class="card-lbl">Em assinatura</div><div class="card-val">2</div></div>
+    <div class="card"><div class="card-lbl">Pend. externas</div><div class="card-val">4</div></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th style="width:30%">Documento</th><th style="width:18%">Empresa</th><th style="width:9%">Tipo</th>
+        <th style="width:7%">Sol.</th><th style="width:8%">Criado</th><th style="width:18%">Status</th><th style="width:10%">SLA</th>
+      </tr></thead>
+      <tbody>
+<tr><td title="CENTER GARBIN UTILIDADES DOMESTICAS LTDA - Aditivo de reajuste">CENTER GARBIN UTILIDADES DOMESTICAS LTDA…</td><td title="CENTER GARBIN">CENTER GARBIN</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>13/07</td><td><span class="badge b2">&#8599; Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
+<tr><td title="TECHNOBLAST SERVICOS DE DETONACAO - Rescisão Contratual">TECHNOBLAST SERVICOS DE DETONACAO - Resc…</td><td title="TECHNOBLAST">TECHNOBLAST</td><td><span class="tag tres">Rescisão</span></td><td><span class="tag tcs">CS</span></td><td>14/07</td><td><span class="badge b2">&#8599; Em assinatura</span></td><td class="sla-ok">No prazo</td></tr>
+<tr><td title="Grupo Albion - [CS] Aditivo de reajuste">Grupo Albion - [CS] Aditivo de reajuste</td><td title="Grupo Albion">Grupo Albion</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>17/07</td><td><span class="badge b4">&#9679; Em análise pelo Legal</span></td><td class="sla-ok">Vence 22/jul</td></tr>
+<tr><td title="Jazz Side Serviços de Reservas - [Sales] Elaboração de contrato">Jazz Side Serviços de Reservas - [Sales]…</td><td title="Jazz Side Serv. Reservas">Jazz Side Serv. Reserv…</td><td><span class="tag tsmb">SMB</span></td><td><span class="tag tsl">Sales</span></td><td>15/07</td><td><span class="badge b3">&#9203; Ag. CS/Sales ou Empresa</span></td><td class="sla-ok">SLA pausado</td></tr>
+<tr><td title="Oceane - Rescisão Contratual | [CS]">Oceane - Rescisão Contratual | [CS]</td><td title="Oceane">Oceane</td><td><span class="tag tres">Rescisão</span></td><td><span class="tag tcs">CS</span></td><td>16/07</td><td><span class="badge b3">&#9203; Ag. CS/Sales ou Empresa</span></td><td class="sla-ok">SLA pausado</td></tr>
+<tr><td title="Abstartups - [CS] Aditivo de reajuste">Abstartups - [CS] Aditivo de reajuste</td><td title="Abstartups">Abstartups</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>16/07</td><td><span class="badge b3">&#9203; Ag. CS/Sales ou Empresa</span></td><td class="sla-ok">SLA pausado</td></tr>
+<tr><td title="Genial Care - [CS] Aditivo de reajuste">Genial Care - [CS] Aditivo de reajuste</td><td title="Genial Care">Genial Care</td><td><span class="tag tat">Aditivo</span></td><td><span class="tag tcs">CS</span></td><td>16/07</td><td><span class="badge b3">&#9203; Ag. CS/Sales ou Empresa</span></td><td class="sla-ok">SLA pausado</td></tr>
+      </tbody>
+    </table>
+  <div class="sla-disclaimer">
+    <strong>SLA de 3 dias úteis</strong> &mdash; contagem a partir da criação do ticket, apenas dias úteis (seg–sex). Tickets em <em>Ag. CS/Sales ou Empresa</em> estão com SLA pausado — pendência é externa ao Legal.
+  </div>
+</div>
+</div>
+<div id="w0" class="sec">
   <div class="cards">
     <div class="card"><div class="card-lbl">Total</div><div class="card-val">8</div><div class="card-sub">7 Aditivos &#183; 1 SMB</div></div>
     <div class="card"><div class="card-lbl">Conclu&#237;dos</div><div class="card-val">1</div></div>
@@ -934,9 +1048,9 @@ function chartOpts(stacked) {
     }
   };
 }
-new Chart(document.getElementById('cWeek'),{type:'bar',data:{labels:["jun 4/26", "jun 5/26", "jun 6/26"],datasets:[{label:'Aditivo',data:[8, 6, 7],backgroundColor:'#40002D',borderRadius:3},{label:'SMB',data:[2, 1, 1],backgroundColor:'#BE0380',borderRadius:3}]},options:chartOpts(true)});
-new Chart(document.getElementById('cMonth'),{type:'bar',data:{labels:["Mar/26", "Abr/26", "Mai/26", "Jun/26"],datasets:[{label:'Aditivo',data:[15, 13, 19, 35],backgroundColor:'#40002D',borderRadius:3},{label:'SMB',data:[5, 6, 4, 9],backgroundColor:'#BE0380',borderRadius:3}]},options:chartOpts(true)});
-new Chart(document.getElementById('cQ'),{type:'bar',data:{labels:["1QD/25", "2QD/25", "3QD/25", "1QD/26", "2QD/26"],datasets:[{label:'Aditivo',data:[4, 63, 56, 55, 57],backgroundColor:'#40002D',borderRadius:3},{label:'SMB',data:[4, 33, 18, 15, 10],backgroundColor:'#BE0380',borderRadius:3}]},options:chartOpts(true)});
+new Chart(document.getElementById('cWeek'),{type:'bar',data:{labels:["jul 1/26", "jul 2/26", "jul 3/26"],datasets:[{label:'Aditivo',data:[5, 6, 4],backgroundColor:'#40002D',borderRadius:3},{label:'Contrato/Resc.',data:[0, 1, 1],backgroundColor:'#BE0380',borderRadius:3}]},options:chartOpts(true)});
+new Chart(document.getElementById('cMonth'),{type:'bar',data:{labels:["Mar/26", "Abr/26", "Mai/26", "Jun/26", "Jul/26"],datasets:[{label:'Aditivo',data:[15, 13, 19, 35, 15],backgroundColor:'#40002D',borderRadius:3},{label:'Contrato/Resc.',data:[5, 6, 4, 9, 5],backgroundColor:'#BE0380',borderRadius:3}]},options:chartOpts(true)});
+new Chart(document.getElementById('cQ'),{type:'bar',data:{labels:["1QD/25", "2QD/25", "3QD/25", "1QD/26", "2QD/26"],datasets:[{label:'Aditivo',data:[4, 63, 56, 55, 72],backgroundColor:'#40002D',borderRadius:3},{label:'Contrato/Resc.',data:[4, 33, 18, 15, 15],backgroundColor:'#BE0380',borderRadius:3}]},options:chartOpts(true)});
 </script>
 </body>
 </html>
